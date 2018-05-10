@@ -1,20 +1,24 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.onVideoTitleClick = this.onVideoTitleClick.bind(this);
 
     this.state = {
-      currentVideo : {window.exampleVideoData[0]},
-      currentVideoList : {window.exampleVideoData}
-    }
+      currentVideo: window.exampleVideoData[0],
+      currentVideoList: window.exampleVideoData
+    };
+
   }
   
   onVideoTitleClick() {
-    this.setState({
-      currentVideo: 
-      currentVideoList: 
-    });
+    // this.setState({
+    //   // currentVideo: props.video.title,
+    //   // currentVideoList: window.exampleVideoData
+    // });
+    console.log('from videoList');
   }
-  
+
   render() {
     return (
       <div>
@@ -28,7 +32,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.currentVideoList}/>
+            <VideoList videos={this.state.currentVideoList} titleClick={this.onVideoTitleClick}/>
           </div>
         </div>
       </div>
