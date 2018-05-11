@@ -3,28 +3,40 @@ class App extends React.Component {
     super(props);
     
     this.onVideoTitleClick = this.onVideoTitleClick.bind(this);
+    this.onSearch = this.onSearch.bind(this);
 
     this.state = {
       currentVideo: window.exampleVideoData[0],
-      currentVideoList: window.exampleVideoData
+      currentVideoList: window.exampleVideoData,
+      inputValue: 'default'
     };
-
   }
   
-  onVideoTitleClick() {
-    // this.setState({
-    //   // currentVideo: props.video.title,
-    //   // currentVideoList: window.exampleVideoData
-    // });
-    console.log('from videoList');
+  onVideoTitleClick(video) {
+    this.setState({
+      currentVideo: video
+      // currentVideoList: window.exampleVideoData
+    });
   }
-
+  
+  onSearch(value) {
+    searchYouTube(data: {
+      query: 'default',
+      part: 'snippet',
+      max: 5,
+      key: YOUTUBE_API_KEY
+    }, (video) => {this.setState({
+        currentVideoList: collection,
+        currentVideo: collection[0]
+      })}
+    );
+  }
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search/>
+            <Search onSearch={this.onSearch} value={this.state.inputValue}/>
           </div>
         </nav>
         <div className="row">
